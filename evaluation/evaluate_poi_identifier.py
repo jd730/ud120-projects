@@ -2,13 +2,14 @@
 
 
 """
-    Starter code for the evaluation mini-project.
-    Start by copying your trained/tested POI identifier from
-    that which you built in the validation mini-project.
+    starter code for the evaluation mini-project
+    start by copying your trained/tested POI identifier from
+    that you built in the validation mini-project
 
-    This is the second step toward building your POI identifier!
+    the second step toward building your POI identifier!
 
-    Start by loading/formatting the data...
+    start by loading/formatting the data
+
 """
 
 import pickle
@@ -28,4 +29,20 @@ labels, features = targetFeatureSplit(data)
 
 ### your code goes here 
 
+from sklearn import cross_validation
+from sklearn import tree
+from sklearn import metrics
 
+features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(features, labels, test_size=0.3, random_state=42)
+
+
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+print metrics.recall_score(labels_test,pred, average=None)
+
+print metrics.precision_score(labels_test,pred,average=None)
+print labels_test
+print pred
+print labels_test-pred
