@@ -27,6 +27,30 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 ### the plotting code below works, and you can see what your regression looks like
 
 
+from sklearn import linear_model
+reg = linear_model.LinearRegression()
+reg.fit(ages_train, net_worths_train)
+pred = reg.predict(ages_train)
+
+def mi(x,y) : return (x-y)*(x-y)
+sse = map(mi,net_worths_train, pred)
+
+li = zip(sse,ages_train,net_worths_train)
+li.sort()
+li =  li[0:int(len(li)*0.9)]
+new_ages_train = [x[1] for x in li]
+new_net_worths_train = [x[2] for x in li]
+
+print reg.coef_
+print reg.intercept_
+print reg.score(ages_test,net_worths_test)
+
+reg.fit(new_ages_train, new_net_worths_train)
+
+print reg.coef_
+print reg.intercept_
+
+print reg.score(ages_test,net_worths_test)
 
 
 
