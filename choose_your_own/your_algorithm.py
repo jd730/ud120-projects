@@ -36,9 +36,9 @@ plt.show()
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
-#clf = KNeighborsClassifier(p=4,n_neighbors =10,leaf_size = 50,algorithm='ball_tree',weights='distance')
-#clf = RandomForestClassifier(n_estimators=100)
-clf = AdaBoostClassifier(n_estimators=100)
+clf = KNeighborsClassifier(p=4,n_neighbors =10,leaf_size = 50,algorithm='ball_tree',weights='distance')
+#clf = RandomForestClassifier(n_estimators=100) 0.916
+#clf = AdaBoostClassifier(n_estimators=100) 0.924
 clf.fit (features_train, labels_train)
 
 from sklearn.metrics import accuracy_score
